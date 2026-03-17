@@ -6,6 +6,8 @@ public class GemCollect : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            ScoreManager.instance.AddGem();
+
             Destroy(gameObject);
         }
     }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    public float speed = 6.0f;
-    public float rotationSpeed = 90;
+    public float speed = 3.0f;
+    public float rotationSpeed = 45;
     public float jumpForce = 700f;
 
     Rigidbody rb;
