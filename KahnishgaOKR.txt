@@ -1,0 +1,4 @@
+Schedule and deliverable:
+Create Forest enviornment alongside the path for player -- Monday by 11:59pm (estimate: 4 hours)
+Create our player plus code the movement logic -- Monday by 11:59pm (estimate: 2 hours)
+Add the gems/collectables on the path -- Monday by 11:59pm (estimate: 1 hour)
