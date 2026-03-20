@@ -1,0 +1,17 @@
+Schedule and Deliverables:
+
+- Design and implement village environment using Unity assets (houses, buildings, trees, farm layout) -- Completed (estimate: 6 hrs)
+
+- Develop NPC character system with basic movement (idle + patrol behavior) -- Fri by 6pm (estimate: 6 hrs)
+
+- Implement NPC-player interaction system (dialogue + questionnaire based on design document) -- Sat by 5pm (estimate: 5 hrs)
+
+- Create triggers for gameplay events (location-based and action-based triggers such as entering village or restricted areas) -- Sat by 9pm (estimate: 4 hrs)
+
+- Implement billboards and story preview elements to guide player progression -- Sun by 3pm (estimate: 3 hrs)
+
+- Structure distinct levels/areas (forest, village, maze, dragon lair) to clearly show game progression -- Sun by 8pm (estimate: 6 hrs)
+
+- Perform play testing to identify bugs and gameplay issues (movement, interactions, triggers) -- Mon by 4pm (estimate: 4 hrs)
+
+- Finalize and update formal design document based on implemented features -- Mon by 8pm (estimate: 3 hrs)
