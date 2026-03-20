@@ -1,3 +1,4 @@
 Schedule and deliverable:
 collecting gems logic -- Wednesday by 5pm (estimate: 2 hrs)
 crafting of potions using gems -- Wednesday by 5pm (estimate: 1 hr)
+npc trust reduction -- Thursday by 11:59 PM (estimate: 2 hr)
