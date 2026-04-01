@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
-
 using UnityEngine.UI;
+
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
@@ -9,62 +9,67 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI gemText;
     public TextMeshProUGUI potionText;
     public TextMeshProUGUI trustText;
+
     [SerializeField] private Button PotionBtn;
     [SerializeField] private Button DarkSpell;
+    [SerializeField] private Button SpeakToNpc;
+
     private int gems = 0;
     private int potions = 0;
-    private int NPCTrust = 50; 
-
+    private int NPCTrust = 50;
 
     void Awake()
     {
         instance = this; // singleton
 
-        // add a listener to the host button
         PotionBtn.onClick.AddListener(() =>
         {
-            AddPotion(); 
-            RemoveGem(); 
-            UpdateGemDisplay(); 
-            UpdatePotionDisplay(); 
+            if(gems >= 1){
+                potionUpdate(1);
+                gemUpdate(-1);
+            }
         });
-        
+
         DarkSpell.onClick.AddListener(() =>
         {
-            reduceTrust(); 
-            UpdateNPCTrustDisplay(); 
+            trustUpdate(-5);
+            BayesianNetwork.instance.UsedDarkSpell();
+        });
+
+        SpeakToNpc.onClick.AddListener(() =>
+        {
+            Debug.Log("Speaking to NPC!");
         });
     }
 
     void Start()
     {
         UpdateGemDisplay();
-        UpdatePotionDisplay(); 
-        UpdateNPCTrustDisplay(); 
+        UpdatePotionDisplay();
+        UpdateNPCTrustDisplay();
+
+        if (SpeakToNpc != null)
+            SpeakToNpc.gameObject.SetActive(gems >= 10);
     }
 
-    public void AddGem()
+    public void gemUpdate(int num)
     {
-        gems++;
+        gems += num;
         UpdateGemDisplay();
-    }
-    public void RemoveGem()
-    {
-        gems--;
-        UpdateGemDisplay();
+        if (SpeakToNpc != null)
+            SpeakToNpc.gameObject.SetActive(gems >= 10);
     }
 
-    public void reduceTrust()
+    public void trustUpdate(int num)
     {
-        NPCTrust-=5;
+        NPCTrust += num;
         UpdateNPCTrustDisplay();
     }
 
-
-    public void AddPotion()
+    public void potionUpdate(int num)
     {
-        potions++; 
-        UpdatePotionDisplay(); 
+        potions += num;
+        UpdatePotionDisplay();
     }
 
     private void UpdateNPCTrustDisplay()
@@ -74,6 +79,7 @@ public class ScoreManager : MonoBehaviour
             trustText.text = "Trust : " + NPCTrust;
         }
     }
+
     private void UpdateGemDisplay()
     {
         if (gemText != null)
