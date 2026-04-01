@@ -3,29 +3,44 @@ using UnityEngine;
 public class NPCMove : MonoBehaviour
 {
     public float speed = 2f;
+    public float walkDistance = 30f;
     public Animator animator;
+
+    private Vector3 startPosition;
+
+    void Start()
+    {
+        startPosition = transform.position;
+    }
 
     void Update()
     {
-        // Move forward constantly
-        Vector3 forward = transform.forward * speed * Time.deltaTime;
-        
-        // Apply movement
+        Vector3 move = transform.forward * speed * Time.deltaTime;
+
         CharacterController cc = GetComponent<CharacterController>();
-        if(cc != null)
+        if (cc != null)
         {
-            cc.Move(forward);
+            cc.Move(move);
         }
         else
         {
-            // fallback: move via transform
-            transform.position += forward;
+            transform.position += move;
         }
 
-        // Play walk/run animation
-        if(animator != null)
+        float distance = Vector3.Distance(startPosition, transform.position);
+
+        if (distance >= walkDistance)
         {
-            animator.SetBool("isWalking", true); // make sure your Animator has a bool
+            // Turn around
+            transform.Rotate(0f, 180f, 0f);
+
+            // Reset distance check
+            startPosition = transform.position;
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", true);
         }
     }
 }
