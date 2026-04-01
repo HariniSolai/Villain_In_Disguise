@@ -21,6 +21,12 @@ public class EnemySpawner : MonoBehaviour
                 {
                     SetVisible(enemy, true); // show enemy when button clicked
                 }
+                // // calculate trust from previous actions
+                //BayesianNetwork.instance.CalculateAlignment();
+
+                // start the 5-second trust timer
+                BayesianNetwork.instance.StartEnemyTrustTimer();
+                //BayesianNetwork.instance.startNPCTrustTimer(); 
             });
         }
     }
