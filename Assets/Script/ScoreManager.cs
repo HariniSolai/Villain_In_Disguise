@@ -88,11 +88,25 @@ public class ScoreManager : MonoBehaviour
         Q2Fight.onClick.AddListener(() => {
             NPCInteractionFSM.instance.AnswerFight(); 
             Debug.Log("Q2: calling Fight function"); 
+
+            if (Q2Fight != null)
+                Q2Fight.gameObject.SetActive(false);
+            if (Q2NoFight != null)
+                Q2NoFight.gameObject.SetActive(false);
+            if (question2 != null)
+                question2.gameObject.SetActive(false); 
         });
 
         Q2NoFight.onClick.AddListener(() => {
             NPCInteractionFSM.instance.AnswerNoFight(); 
             Debug.Log("Q2: calling No Fight function"); 
+
+            if (Q2Fight != null)
+                Q2Fight.gameObject.SetActive(false);
+            if (Q2NoFight != null)
+                Q2NoFight.gameObject.SetActive(false);
+            if (question2 != null)
+                question2.gameObject.SetActive(false); 
         });
 
         SpeakToNpc.onClick.AddListener(() =>
