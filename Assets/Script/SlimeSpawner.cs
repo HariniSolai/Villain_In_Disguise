@@ -5,9 +5,13 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemy; 
     [SerializeField] private Button spawnButton;
+    
+    public static EnemySpawner instance;
 
     void Start()
     {
+        instance = this;
+
         if (enemy != null)
         {
             SetVisible(enemy, false); // hide enemy at start
@@ -21,11 +25,11 @@ public class EnemySpawner : MonoBehaviour
                 if (enemy != null) {
                     SetVisible(enemy, true); // show enemy when button clicked
                 }
-                // // calculate trust from previous actions
+                // calculate trust from previous actions
                 //BayesianNetwork.instance.CalculateAlignment();
 
                 // start the 5-second trust timer
-                BayesianNetwork.instance.StartEnemyTrustTimer();
+                //BayesianNetwork.instance.StartEnemyTrustTimer();
                 //BayesianNetwork.instance.startNPCTrustTimer(); 
             });
         }
@@ -35,6 +39,12 @@ public class EnemySpawner : MonoBehaviour
         foreach (Renderer renderer in obj.GetComponentsInChildren<Renderer>())
         {
             renderer.enabled = visible;
+        }
+    }
+
+    public void SpawnEnemy() {
+        if (enemy != null) {
+            SetVisible(enemy, true);
         }
     }
 }

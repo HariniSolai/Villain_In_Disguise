@@ -32,6 +32,13 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             rb.AddForce(Vector3.up * jumpForce);
         }
+
+        // Attack (Press the F key or left mouse click)
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F)) {
+            if (anim != null) {
+                anim.SetTrigger("Attack");
+            }
+        }
     }
 
     void FixedUpdate() {
