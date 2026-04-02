@@ -40,7 +40,7 @@ These physics elements help create a more immersive environment and reinforce th
 
 * An old paper texture is used for directional billboards along forest paths
 * A skybox texture with clouds provides environmental depth and realism
-* Terrain textures include variations such as grass, flowers, dirt, and stone paths to differentiate regions
+* Forest Terrain textures include variations such as grass, flowers, dirt, and stone paths to differentiate regions
 * Village structures use distinct textures to separate them visually from the natural environment
 
 Lighting and textures are used together to guide the player visually while also establishing the fantasy feel and mood of each area.
@@ -70,7 +70,7 @@ Unity’s Mecanim system is used to animate both characters and environmental el
 
 * NPC animations include idle and interaction (talking) states
 * Enemy spawn and fight animations when player decides to fight in Q2
-* Environmental animations, such as animals or fire, add ambient motion to the world
+* Environmental animations, such as animals(COW) or fire, add ambient motion to the world
 
 These animations improve realism and make interactions feel more natural and engaging.
 
