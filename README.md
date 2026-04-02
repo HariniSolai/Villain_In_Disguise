@@ -32,8 +32,8 @@ These physics elements help create a more immersive environment and reinforce th
 
 **Lighting:**
 
-* Glowing gems act as dynamic light sources within the environment
-* Lanterns in the forest use spotlight lighting to guide player navigation
+* Glowing Mushrooms act as dynamic light sources within the forest environment
+* Spotlight lighting on the Billboards to guide player navigation in the forest
 * Bonfires provide localized lighting that enhances atmosphere in the village
 
 **Textures:**
@@ -68,8 +68,8 @@ These systems ensure that the game world reacts meaningfully to the player, maki
 
 Unity’s Mecanim system is used to animate both characters and environmental elements:
 
-* Player animations include idle and combat states
 * NPC animations include idle and interaction (talking) states
+* Enemy spawn and fight animations when player decides to fight in Q2
 * Environmental animations, such as animals or fire, add ambient motion to the world
 
 These animations improve realism and make interactions feel more natural and engaging.
