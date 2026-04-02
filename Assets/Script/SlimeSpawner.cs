@@ -13,12 +13,12 @@ public class EnemySpawner : MonoBehaviour
             SetVisible(enemy, false); // hide enemy at start
         }
 
+        // The spawn Button on the canvas is the "Speak to NPC" button the player will click
         if (spawnButton != null)
         {
             spawnButton.onClick.AddListener(() =>
             {
-                if (enemy != null)
-                {
+                if (enemy != null) {
                     SetVisible(enemy, true); // show enemy when button clicked
                 }
                 // // calculate trust from previous actions

@@ -39,6 +39,11 @@ public class ScoreManager : MonoBehaviour
         SpeakToNpc.onClick.AddListener(() =>
         {
             Debug.Log("Speaking to NPC!");
+            //this is where the interaction logic will be
+            // it has to go through these questions in order
+            // Q1. Speak to the villager? A. Hold a good converstation --> +5 trust, B. Ignore them --> -2 trust
+            // Q2. Buy fruits from the community? A. Do a kind gesture --> +5 trust, B. Walk past them --> -2 trust
+            // Q3. Will you fight? A. Yes --> trigger the release of enemies, B. No 
         });
     }
 
