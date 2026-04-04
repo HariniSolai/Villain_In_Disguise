@@ -1,6 +1,7 @@
 # Villain_In_Disguise
 
 Game Idea: Villain in Disguise is a single-player 3D action-adventure game where the player takes on the role of an exiled villain searching for a rare magical resource hidden in a dragon’s lair. To achieve this, the player must secretly protect a town and gain the trust of its NPCs while hiding their true identity. The game focuses on exploration, decision making, and a unique trust system where NPCs judge the player based on actions rather than intentions. Players must balance helping others with avoiding forbidden actions like using dark magic in public, as these choices directly impact progression and access to the final objective.
+
 Key Features of this game include:
 - Exploration of forest, town, and wilderness environments
 - Trust system that controls NPC behavior and game progression
@@ -34,14 +35,14 @@ These physics elements help create a more immersive environment and reinforce th
 
 * Glowing Mushrooms act as dynamic light sources within the forest environment
 * Spotlight lighting on the Billboards to guide player navigation in the forest
-* Bonfires provide localized lighting that enhances atmosphere in the village
+* Bonfire lights provide localized lighting that enhances atmosphere in the village
 
 **Textures:**
 
 * An old paper texture is used for directional billboards along forest paths
 * A skybox texture with clouds provides environmental depth and realism
 * Forest Terrain textures include variations such as grass, flowers, dirt, and stone paths to differentiate regions
-* Village structures use distinct textures to separate them visually from the natural environment
+* Bridge and Fence have wood grain texture 
 
 Lighting and textures are used together to guide the player visually while also establishing the fantasy feel and mood of each area.
 
@@ -52,15 +53,15 @@ Lighting and textures are used together to guide the player visually while also 
 The game integrates several AI techniques to support gameplay mechanics and player interaction:
 
 * A Finite State Machine (FSM) controls NPC behavior, including idle states, interactions, and responses to player actions
-* Navigation Mesh and pathfinding systems allow NPCs and enemies to move intelligently throughout the environment
+* Navigation Mesh and pathfinding systems allow NPCs to move naturally throughout the village environment.
 * A Bayesian Network is used to model and update the trust system based on player decisions
 
 Additional AI-driven features include:
 
-* Enemy spawning under certain gameplay conditions
-* A dynamic trust system that increases or decreases depending on player actions and decision timing
+* Enemy spawning under certain gameplay conditions (FSM - question responses)
+* A dynamic trust system that increases or decreases depending on player actions and decision timing (Bayesian Network) 
 
-These systems ensure that the game world reacts meaningfully to the player, making decisions impactful.
+These systems ensure that the game world reacts meaningfully to the player, making decisions impactful with different outcomes/experiances.
 
 ---
 
@@ -68,9 +69,9 @@ These systems ensure that the game world reacts meaningfully to the player, maki
 
 Unity’s Mecanim system is used to animate both characters and environmental elements:
 
-* NPC animations include idle and interaction (talking) states
+* NPC animations include idle and interaction (walking) states
 * Enemy spawn and fight animations when player decides to fight in Q2
-* Environmental animations, such as animals(COW) or fire, add ambient motion to the world
+* Environmental animations, such as animals (Cow) or fire flickering, add ambient motion to the world
 
 These animations improve realism and make interactions feel more natural and engaging.
 
