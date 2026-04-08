@@ -7,7 +7,7 @@ public class StartMenu : MonoBehaviour
 {
     public void OnPlayBtn()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     public void OnQuitBtn()
