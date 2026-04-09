@@ -24,6 +24,9 @@ public class ScoreManager : MonoBehaviour
     private int gems = 0;
     private int potions = 0;
     private int NPCTrust = 50;
+    public AudioClip NPCHeyWhatAreYouDoingSound;
+    public AudioClip NPCHeyWhatWasThatSound;
+    public AudioClip enemySound;
 
     void Awake()
     {
@@ -60,6 +63,9 @@ public class ScoreManager : MonoBehaviour
 
         Q1Good.onClick.AddListener(() => {
             NPCInteractionFSM.instance.AnswerGood(); 
+
+            //play the sound for the NPC talking 
+            AudioSource.PlayClipAtPoint(NPCHeyWhatAreYouDoingSound, transform.position);
             Debug.Log("Q1: calling good function"); 
             if (Q2Fight != null)
                     Q2Fight.gameObject.SetActive(true);
@@ -87,6 +93,12 @@ public class ScoreManager : MonoBehaviour
 
         Q2Fight.onClick.AddListener(() => {
             NPCInteractionFSM.instance.AnswerFight(); 
+
+            //play the NPC's reaction to the enemy 
+            AudioSource.PlayClipAtPoint(NPCHeyWhatWasThatSound, transform.position);
+            
+            //play the enemy sound
+            AudioSource.PlayClipAtPoint(enemySound, transform.position);
             Debug.Log("Q2: calling Fight function"); 
 
             if (Q2Fight != null)

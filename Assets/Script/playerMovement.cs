@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Attack (Press the F key or left mouse click)
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetKeyDown(KeyCode.F)) { //Input.GetMouseButtonDown(0) || 
             if (anim != null) {
                 anim.SetTrigger("Attack");
             }
