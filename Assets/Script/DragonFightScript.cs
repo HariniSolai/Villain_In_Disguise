@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DragonFightTrigger : MonoBehaviour
 {
     [SerializeField] private Animator animFight; // assign in Inspector
+    [SerializeField] private GameObject wall; // assign in Inspector
+
     public AudioClip dragonSound;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,13 +21,21 @@ public class DragonFightTrigger : MonoBehaviour
                 animFight.SetTrigger("Fight");
                 AudioSource.PlayClipAtPoint(dragonSound, transform.position);
                 Debug.Log("Fight Started!");
+                
+                //after 10 seconds move to endScreen
+                StartCoroutine(LoadSceneAfterDelay());
             }
             else
             {
                 Debug.LogError("Animator not assigned!");
             }
 
-            Destroy(gameObject); // destroy trigger only
         }
+    }
+    private IEnumerator LoadSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(10f);
+        SceneManager.LoadScene(4);
+        
     }
 }

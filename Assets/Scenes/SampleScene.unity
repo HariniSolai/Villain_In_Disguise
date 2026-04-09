@@ -14392,6 +14392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragonFightTrigger
   animFight: {fileID: 1831073776}
+  wall: {fileID: 717975264}
   dragonSound: {fileID: 8300000, guid: c05b078acd7917d4d8e6d27b8a7be4ab, type: 3}
 --- !u!65 &717975266
 BoxCollider:
