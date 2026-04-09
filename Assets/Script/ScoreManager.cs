@@ -5,11 +5,9 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-
     public TextMeshProUGUI gemText;
     public TextMeshProUGUI potionText;
     public TextMeshProUGUI trustText;
-
     [SerializeField] private Button PotionBtn;
     [SerializeField] private Button DarkSpell;
     [SerializeField] private Button SpeakToNpc;

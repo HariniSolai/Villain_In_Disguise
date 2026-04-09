@@ -9,6 +9,7 @@ public class BayesianNetwork : MonoBehaviour
     public bool playerKilledEnemy;
     public bool playerLeftEnemyAlive;
     public bool playerUsedDarkSpell;
+    public bool bayesianCalculated = false; 
 
     public float playerGoodProbability = 0.5f;
     public int changeInTrust = 0; 
@@ -104,7 +105,11 @@ public class BayesianNetwork : MonoBehaviour
         {
             playerLeftEnemyAlive = false; 
             playerKilledEnemy = true; 
-            CalculateAlignment(); 
+            if(bayesianCalculated == false)
+            {
+                bayesianCalculated = true; 
+                CalculateAlignment(); 
+            }
         }
     }
 

@@ -21,6 +21,8 @@ public class NPCInteractionFSM : MonoBehaviour
     {
         instance = this;
     }
+    [SerializeField] private Animator animFight; 
+    public AudioClip enemySound;
 
     void Idle()
     {
@@ -68,6 +70,11 @@ public class NPCInteractionFSM : MonoBehaviour
 
         // Spawn enemy + start trust timer
         EnemySpawner.instance.SpawnEnemy();
+        Debug.Log("fight sound played"); 
+        AudioSource.PlayClipAtPoint(enemySound, transform.position);
+        
+        animFight.SetTrigger("FightPlayer"); 
+        BayesianNetwork.instance.playerKilledEnemy = true; 
         BayesianNetwork.instance.StartEnemyTrustTimer();
     }
 
@@ -76,6 +83,7 @@ public class NPCInteractionFSM : MonoBehaviour
         //if (currentState != State.Question2) return;
         Debug.Log("Player avoided fight");
         currentState = State.End;
+        BayesianNetwork.instance.playerLeftEnemyAlive = true; 
         BayesianNetwork.instance.CalculateAlignment();
     }
 }
