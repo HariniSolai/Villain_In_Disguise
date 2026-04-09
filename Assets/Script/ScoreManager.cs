@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -15,9 +16,13 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Button Q1Bad;
     [SerializeField] private Button Q2Fight;
     [SerializeField] private Button Q2NoFight;
+    [SerializeField] private GameObject Forcefield;
 
     public TextMeshProUGUI question1;
     public TextMeshProUGUI question2;
+    public TextMeshProUGUI finalHint;
+    private bool failedtrust; 
+    private bool earnedTrust = false; 
 
     private int gems = 0;
     private int potions = 0;
@@ -44,6 +49,10 @@ public class ScoreManager : MonoBehaviour
                 question1.gameObject.SetActive(false);
         if (question2 != null)
                 question2.gameObject.SetActive(false);
+
+        if (!earnedTrust){
+            finalHint.gameObject.SetActive(false); 
+        }
 
         PotionBtn.onClick.AddListener(() =>
         {
@@ -159,6 +168,12 @@ public class ScoreManager : MonoBehaviour
     {
         NPCTrust += num;
         UpdateNPCTrustDisplay();
+        if(NPCTrust >= 80)
+        {
+            earnedTrust = true; 
+            finalHint.gameObject.SetActive(true); 
+            Forcefield.gameObject.SetActive(false); 
+        }
     }
 
     public void potionUpdate(int num)

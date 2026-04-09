@@ -16,7 +16,7 @@ public class BayesianNetwork : MonoBehaviour
 
     [Header("Enemy Settings")]
     public GameObject enemy; // assign the enemy from the scene
-    public float trustPenaltyDelay = 5f; // seconds before reducing trust if enemy alive
+    public float trustPenaltyDelay = 10f; // seconds before reducing trust if enemy alive
     public float NPCTrust = 10f; // seconds before reducing trust if enemy alive
 
     void Awake()
@@ -30,19 +30,24 @@ public class BayesianNetwork : MonoBehaviour
         float score = 0f;
 
         // Good actions
-        if (playerInteractedNPC)
+        if (playerInteractedNPC){
             score += 0.1f;
+            Debug.Log("1. player interacted with NPC"); 
+        }
 
-        if (playerKilledEnemy)
+        if (playerKilledEnemy){
             score += 0.2f;
-
+            Debug.Log("2. player killed enemy "); 
+        }
         // Bad actions
-        if (playerLeftEnemyAlive)
+        if (playerLeftEnemyAlive){
             score -= 0.3f;
-
-        if (playerUsedDarkSpell)
+            Debug.Log("3. player left enemy alive"); 
+        }
+        if (playerUsedDarkSpell){
             score -= 0.05f;
-
+            Debug.Log("4. player used dark spell"); 
+        }
         playerGoodProbability = Mathf.Clamp01(0.5f + score);
 
         Debug.Log("Player Good Probability: " + playerGoodProbability);
@@ -86,6 +91,8 @@ public class BayesianNetwork : MonoBehaviour
     public void StartEnemyTrustTimer()
     {
         if (enemy != null)
+            playerKilledEnemy = true; 
+            playerLeftEnemyAlive = false; 
             StartCoroutine(EnemyAliveTimer());
     }
 
@@ -94,41 +101,10 @@ public class BayesianNetwork : MonoBehaviour
     {
         yield return new WaitForSeconds(trustPenaltyDelay);
 
-        if (enemy != null && enemy.activeInHierarchy) // enemy still alive
+        if(bayesianCalculated == false)
         {
-            Debug.Log("Enemy still alive after " + trustPenaltyDelay + " seconds! Reducing trust.");
-            //ScoreManager.instance.trustUpdate(-3); // reduce trust
-            playerLeftEnemyAlive = true; 
-            playerKilledEnemy = false;
+            bayesianCalculated = true; 
             CalculateAlignment(); 
-        } else
-        {
-            playerLeftEnemyAlive = false; 
-            playerKilledEnemy = true; 
-            if(bayesianCalculated == false)
-            {
-                bayesianCalculated = true; 
-                CalculateAlignment(); 
-            }
         }
     }
-
-//     public void startNPCTrustTimer()
-//     {
-//         StartCoroutine(npcTrustOutcome());
-//     }
-//     private IEnumerator npcTrustOutcome()
-// {
-//     yield return new WaitForSeconds(NPCTrust);
-
-//     if (ScoreManager.instance == null)
-//     {
-//         Debug.LogError("ScoreManager.instance is null! Cannot update trust.");
-//         yield break;
-//     }
-
-//     CalculateAlignment(); 
-//     Debug.Log("NPC trust change!");
-//     ScoreManager.instance.trustUpdate(changeInTrust);
-// }
 }

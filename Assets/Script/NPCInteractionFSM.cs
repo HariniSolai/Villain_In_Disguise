@@ -72,9 +72,10 @@ public class NPCInteractionFSM : MonoBehaviour
         EnemySpawner.instance.SpawnEnemy();
         Debug.Log("fight sound played"); 
         AudioSource.PlayClipAtPoint(enemySound, transform.position);
-        
+
         animFight.SetTrigger("FightPlayer"); 
         BayesianNetwork.instance.playerKilledEnemy = true; 
+        BayesianNetwork.instance.playerLeftEnemyAlive = false; 
         BayesianNetwork.instance.StartEnemyTrustTimer();
     }
 
