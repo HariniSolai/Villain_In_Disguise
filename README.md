@@ -116,3 +116,33 @@ Link: https://pixabay.com/sound-effects/nature-cows-56001/
 
 * For the background village chatter sound, I used a background chatter sound from Pixabay. This plays in the village to simulate people talking and make the area feel populated. 
 https://pixabay.com/sound-effects/people-chattertrainride-17702/
+
+### Additional Gameplay Features (HW7 Updates)
+
+The following improvements were added to enhance gameplay, immersion, and user experience:
+
+* **NPC Wandering System:** NPC characters now actively move around the village using Unity NavMesh. They walk for longer distances and switch between walking and idle states, making the environment feel more alive and dynamic instead of static.
+
+* **Improved Village Interactivity:** The village environment has been expanded with additional houses, shops, and layout improvements to eliminate empty space and create a more realistic and engaging world for the player to explore.
+
+* **Teleportation System:** Players can instantly move between major locations using keyboard shortcuts:
+  - **B** → Forest  
+  - **V** → Village  
+  - **C** → Cave  
+  This allows faster navigation and smoother gameplay flow.
+
+* **Lose Condition System:** A lose state has been introduced where if the player’s trust level drops below a certain threshold, the game transitions to a lose screen, encouraging strategic decision-making.
+
+* **UI Improvements:** 
+  - Added a restart/lose screen system for better player feedback  
+  - Improved button visibility and interaction clarity  
+  - Enhanced readability of UI elements over the game background  
+
+* **Area-Based Sound System:** Specific sounds now trigger based on player location (e.g., cows near farms, bells near church), making the world feel more responsive and immersive.
+
+* **Environmental Effects Enhancements:**
+  - Fire and smoke particle systems improved for realism  
+  - Lighting adjustments to better highlight important areas  
+  - Added visual effects to key interactive objects  
+
+---
