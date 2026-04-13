@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemy; 
     [SerializeField] private Button spawnButton;
+    [SerializeField] private Animator animFight; // assign in Inspector
     
     public static EnemySpawner instance;
 
@@ -45,6 +46,8 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy() {
         if (enemy != null) {
             SetVisible(enemy, true);
+            animFight.SetTrigger("FightPlayer");
+            
         }
     }
 }
