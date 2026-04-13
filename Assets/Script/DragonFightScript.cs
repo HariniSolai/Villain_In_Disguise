@@ -19,7 +19,7 @@ public class DragonFightTrigger : MonoBehaviour
             if (animFight != null)
             {
                 animFight.SetTrigger("Fight");
-                AudioSource.PlayClipAtPoint(dragonSound, Camera.main.transform.position);
+                AudioSource.PlayClipAtPoint(dragonSound, Camera.main.transform.position, 2f);
                 Debug.Log("Fight Started!");
                 
                 //after 10 seconds move to endScreen

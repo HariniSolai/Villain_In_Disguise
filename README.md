@@ -75,3 +75,44 @@ Unity’s Mecanim system is used to animate both characters and environmental el
 
 These animations improve realism and make interactions feel more natural and engaging.
 
+---
+
+### Sounds 
+* When the player collects gems I have a magical collection sound which is Leohpaz’s 10_UI_Menu_SFX/079_Buy_sell_01.wav sound from the asset RPG Essentials Sound Effects - FREE! I had chosen this sound as the gem pick up sound effect since there was a noise dispersion like coins falling and that helped paint the picture as in the game when the gems are collected they disappear and with the sound effect it is like the gems get crumbled when collected. Some sound effects I rejected were a glowing orb sound cause it didn't paint the picture that the gems were being collected and were subtle.
+Link: https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708
+
+* For all the buttons on the canvas that the player will click we added a Clicking sound. This sound is from SwishSwoosh’s Free UI Click Sound Effects Pack and I decided to specifically use the AUDIO/Button/SFX_UI_Button_Mouse_Thick_Generic_1.wav This sound was chosen as it was more of a mouse click sound that was clear rather than the other keyboard clicking sounds as they weren't as crisp and distinct as a Mouse clicking sound. 
+Link: https://assetstore.unity.com/packages/audio/sound-fx/free-ui-click-sound-pack-244644
+
+* Forest General Environment sounds from Nox_Sound’s Asset Nature - Essentials. I specifically selected the Ambiance_Forest_Birds_Loop_Stereo.wav since in forests it's common to be surrounded by critter noises and the birds which felt more natural that the other more popular water ambient forest sounds that were available which I had taken a listen to. Some specific ones I rejected were forest sounds with a lot of water noises like drips since it didn’t work with our forest set up which has more trees and wood. 
+Link: https://assetstore.unity.com/packages/audio/ambient/nature/nature-essentials-208227
+
+* Forest General Environment sounds from Nox_Sound’s Asset Nature - Essentials. Part of the game is in a cave location and for our game we wanted a very specific, almost unnerving cave noise. This is because the final boss of the game, a dragon, is residing in the cave. I choose the Ambiance_Cave_Dark_Loop_Stereo.wav to give the cave and area surrounding the cave a spooky feeling. Some sounds I rejected were a cave sound with dripping water, that sound would make sense for an underwater cave or ambient cave noise, but we wanted a cave noise that made the player feel more alert than relaxed. 
+Link: https://assetstore.unity.com/packages/audio/ambient/nature/nature-essentials-208227
+
+* The Alerted NPC (Male) - Voice Pack by Voice Bosch. Since an important part of the game is interaction with NPCs, I added NPC voices when the player does certain actions so it feels like they are really interacting with an NPC. (Audio path: Assets/DownloadedAssets/SoundsDownloaded/TheAlertedNPC/24.HeyWhatAreYouDoing). 
+Link:  https://assetstore.unity.com/packages/audio/sound-fx/voices/the-alerted-npc-male-voice-pack-301220 
+
+* The Alerted NPC (Male) - Voice Pack by Voice Bosch. Continuing the interaction with NPCs is important. If the player is cordial and polite with the NPC, the NPC should continue being nice and interacting with the player. (Audio path: Assets/DownloadedAssets/SoundsDownloaded/TheAlertedNPC/21.HeyWhatWasThat). 
+Link:  https://assetstore.unity.com/packages/audio/sound-fx/voices/the-alerted-npc-male-voice-pack-301220 
+
+* The Alerted NPC (Male) - Voice Pack by Voice Bosch. When the enemy is spawned in, there needs to be something to alert the player of the sudden danger. When looking through the different audios there were very loud or much scarier roars, but I chose the Warning Growl because this enemy is a bit smaller and I wanted to convey danger to the player, but not terrify them. (Audio path: Assets/DownloadedAssets/SoundsDownloaded/MonsterRoars/25.WarningGrowl)
+Link: https://assetstore.unity.com/packages/audio/sound-fx/creatures/monster-roars-audio-pack-301118 
+
+* Deadly_Creatures_Pack1_v1 by ShashiRaj Productions. When the player faces off with the dragon we are reaching the climax and end of the game. At this moment, the player is going to fight the dragon. The dragon animations are set, but to give the player the extra layer of realism there needed to be a dragon sound/roar to make the player more alert since they are facing off against a dragon.(Audio path: Assets/DownloadedAssets/SoundsDownloaded/ ShashiRajProductions/Deadly_Creatures_Breathy_Airy_v1_(2))
+Link: https://assetstore.unity.com/packages/audio/sound-fx/creatures/deadly-creatures-pack1-v1-280813 
+
+* For the jumping sound, I used a cartoon-style jump sound from Pixabay. I chose this sound because it clearly matches the player’s jumping action and makes movement feel more responsive and noticeable. It adds a light and playful feel to the game. 
+Link: https://pixabay.com/sound-effects/film-special-effects-cartoon-jump-6462/ 
+
+* For the church bell sound, I used a bell sound from Pixabay. This sound plays near the church area and helps the player understand their location in the village. 
+Link: https://pixabay.com/sound-effects/city-church-bells-194653/
+
+* For the walking/ running sound, I used a looping running sound from Pixabay. This sound plays when the player is moving and helps make the movement feel more realistic. 
+Link: https://pixabay.com/sound-effects/film-special-effects-person-running-loop-245173/
+
+* For the cow sound, I used a cow ambient sound from Pixabay. This sound plays when the player is near the cow area and helps make that part of the village feel more alive. 
+Link: https://pixabay.com/sound-effects/nature-cows-56001/
+
+* For the background village chatter sound, I used a background chatter sound from Pixabay. This plays in the village to simulate people talking and make the area feel populated. 
+https://pixabay.com/sound-effects/people-chattertrainride-17702/
