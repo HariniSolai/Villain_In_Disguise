@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 17242e4d80c17d748a20cefb289ae8b4
+  - enabled: 1
+    path: Assets/Scenes/LoseScreenActual.unity
+    guid: 531cb8f3ea2997044ac2bd2ff72d2046
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

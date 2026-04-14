@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -20,10 +21,13 @@ public class ScoreManager : MonoBehaviour
 
     public TextMeshProUGUI question1;
     public TextMeshProUGUI question2;
+    public TextMeshProUGUI gemHint;
+    public TextMeshProUGUI soldierHint;
     public TextMeshProUGUI finalHint;
     private bool failedtrust; 
     private bool earnedTrust = false; 
     private bool playerInVillage = false; 
+    public bool NPCInteracted = false; 
 
     private int gems = 0;
     private int potions = 0;
@@ -35,6 +39,7 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         instance = this; // singleton
+
         if(SpeakToNpc != null)
             SpeakToNpc.gameObject.SetActive(false);
 
@@ -53,8 +58,20 @@ public class ScoreManager : MonoBehaviour
         if (question2 != null)
                 question2.gameObject.SetActive(false);
 
+        // if(gems < 10) {
+        //     gemHint.gameObject.SetActive(true); 
+        //     soldierHint.gameObject.SetActive(false); 
+        // } else if (gems >= 10) {
+        //     gemHint.gameObject.SetActive(false);   
+        //     soldierHint.gameObject.SetActive(true); 
+        // }
         if (!earnedTrust){
             finalHint.gameObject.SetActive(false); 
+        }
+        if (earnedTrust){
+            finalHint.gameObject.SetActive(true); 
+            soldierHint.gameObject.SetActive(false); 
+            gemHint.gameObject.SetActive(false);   
         }
 
         PotionBtn.onClick.AddListener(() =>
@@ -67,8 +84,13 @@ public class ScoreManager : MonoBehaviour
 
         DarkSpell.onClick.AddListener(() =>
         {
-            trustUpdate(-5);
-            BayesianNetwork.instance.UsedDarkSpell();
+            if(potions > 0)
+            {
+                potions -= 1; 
+                UpdatePotionDisplay(); 
+                trustUpdate(-5);
+                BayesianNetwork.instance.UsedDarkSpell();
+            }
         });
 
         Q1Good.onClick.AddListener(() => {
@@ -140,7 +162,11 @@ public class ScoreManager : MonoBehaviour
         SpeakToNpc.onClick.AddListener(() =>
         {
             Debug.Log("Speaking to NPC!");
+            NPCInteracted = true; 
             NPCInteractionFSM.instance.StartInteraction();
+            
+            soldierHint.gameObject.SetActive(false); 
+
             if (Q1Good != null)
                     Q1Good.gameObject.SetActive(true);
             if (Q1Bad != null)
@@ -192,6 +218,15 @@ public class ScoreManager : MonoBehaviour
             finalHint.gameObject.SetActive(true); 
             Forcefield.gameObject.SetActive(false); 
         }
+        if (earnedTrust){
+            finalHint.gameObject.SetActive(true); 
+            soldierHint.gameObject.SetActive(false); 
+            gemHint.gameObject.SetActive(false);   
+        }
+        if(NPCTrust <= 20)
+        {
+            SceneManager.LoadScene(5);
+        }
     }
 
     public void potionUpdate(int num)
@@ -213,6 +248,13 @@ public class ScoreManager : MonoBehaviour
         if (gemText != null)
         {
             gemText.text = "Gems: " + gems;
+        }
+        if(gems < 10 && NPCTrust < 80) {
+            gemHint.gameObject.SetActive(true); 
+            soldierHint.gameObject.SetActive(false); 
+        } else if (gems >= 10 && !NPCInteracted) {
+            gemHint.gameObject.SetActive(false);   
+            soldierHint.gameObject.SetActive(true); 
         }
     }
 

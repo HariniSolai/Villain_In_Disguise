@@ -5,11 +5,11 @@ public class LoseScreenManager : MonoBehaviour
 {
     public void RestartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(0);
     }
 
-    public void GoToMenu()
+    public void QuitGame()
     {
-        SceneManager.LoadScene("StartMenu");
+        Application.Quit();
     }
 }
