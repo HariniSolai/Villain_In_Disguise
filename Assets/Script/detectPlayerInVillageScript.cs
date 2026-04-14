@@ -1,19 +1,31 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class detectPlayerInVillageScript : MonoBehaviour
 {
+    public GameObject speakToNPCButton; // assign your button here
+
+    private void Start()
+    {
+        speakToNPCButton.SetActive(false); // make sure it's hidden initially
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Collision of player to village detected!");
-
             ScoreManager.instance.playerInVillageDetected(); 
+            if(ScoreManager.instance.gemNumber() >= 10)
+            {
+                speakToNPCButton.SetActive(true);
+            }
+        }
+    }
 
-            Destroy(gameObject); 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            speakToNPCButton.SetActive(false);
         }
     }
 }

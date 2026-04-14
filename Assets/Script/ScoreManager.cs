@@ -35,6 +35,8 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         instance = this; // singleton
+        if(SpeakToNpc != null)
+            SpeakToNpc.gameObject.SetActive(false);
 
         // Initially hide Q1Good
         if (Q1Good != null)
@@ -73,7 +75,9 @@ public class ScoreManager : MonoBehaviour
             //play the sound for the NPC talking 
             AudioSource.PlayClipAtPoint(NPCHeyWhatAreYouDoingSound, Camera.main.transform.position);
             NPCInteractionFSM.instance.AnswerGood(); 
-
+            
+            //stop showing talk to NPC button
+            SpeakToNpc.gameObject.SetActive(false);
             Debug.Log("Q1: calling good function"); 
             if (Q2Fight != null)
                     Q2Fight.gameObject.SetActive(true);
@@ -88,6 +92,10 @@ public class ScoreManager : MonoBehaviour
 
         Q1Bad.onClick.AddListener(() => {
             NPCInteractionFSM.instance.AnswerIgnore(); 
+            
+            //stop showing talk to NPC button
+            SpeakToNpc.gameObject.SetActive(false);
+
             Debug.Log("Q1: calling ignore function"); 
             if (Q2Fight != null)
                     Q2Fight.gameObject.SetActive(true);
@@ -108,7 +116,7 @@ public class ScoreManager : MonoBehaviour
             //play the enemy sound
             AudioSource.PlayClipAtPoint(enemySound, Camera.main.transform.position);
             Debug.Log("Q2: calling Fight function"); 
-
+            //removing the player talk to NPC button
             if (Q2Fight != null)
                 Q2Fight.gameObject.SetActive(false);
             if (Q2NoFight != null)
@@ -152,23 +160,26 @@ public class ScoreManager : MonoBehaviour
         UpdateGemDisplay();
         UpdatePotionDisplay();
         UpdateNPCTrustDisplay();
-
-        if (SpeakToNpc != null)
-            SpeakToNpc.gameObject.SetActive(gems >= 10 && playerInVillage);
+        //if (SpeakToNpc != null && playerInVillage && gems >= 10)
+            //SpeakToNpc.gameObject.SetActive(true);
     }
 
     public void gemUpdate(int num)
     {
         gems += num;
         UpdateGemDisplay();
-        if (SpeakToNpc != null)
-            SpeakToNpc.gameObject.SetActive(gems >= 10 && playerInVillage);
+        //if (SpeakToNpc != null && playerInVillage && gems >= 10)
+            //SpeakToNpc.gameObject.SetActive(true);
     }
 
     public void playerInVillageDetected()
     {
         playerInVillage = true; 
         gemUpdate(0); 
+    }
+    public int gemNumber()
+    {
+        return gems; 
     }
 
     public void trustUpdate(int num)
