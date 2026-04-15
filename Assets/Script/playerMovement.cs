@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             if (anim != null)
             {
                 anim.SetTrigger("Attack");
+                ScoreManager.instance.reduceDragonhealth(0); 
             }
         }
 

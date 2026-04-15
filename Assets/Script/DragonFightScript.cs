@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class DragonFightTrigger : MonoBehaviour
 {
@@ -18,12 +19,13 @@ public class DragonFightTrigger : MonoBehaviour
 
             if (animFight != null)
             {
-                animFight.SetTrigger("Fight");
+                //The player is in the cave 
+                ScoreManager.instance.inCave();
+                //trigger roar
                 AudioSource.PlayClipAtPoint(dragonSound, Camera.main.transform.position, 2f);
+                animFight.SetTrigger("Awake");
                 Debug.Log("Fight Started!");
-                
-                //after 10 seconds move to endScreen
-                StartCoroutine(LoadSceneAfterDelay());
+                callCoroutine(); 
             }
             else
             {
@@ -32,10 +34,16 @@ public class DragonFightTrigger : MonoBehaviour
 
         }
     }
-    private IEnumerator LoadSceneAfterDelay()
+    private void callCoroutine()
     {
-        yield return new WaitForSeconds(10f);
-        SceneManager.LoadScene(4);
+        StartCoroutine(damagePlayer());
+    }
+    private IEnumerator damagePlayer()
+    {
+        yield return new WaitForSeconds(3f);
+        ScoreManager.instance.reducePlayerHealth(); 
+        callCoroutine(); 
+        
         
     }
 }
