@@ -9,8 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 45;
     public float jumpForce = 700f;
 
+    public float maxHeight = 125f;
+    public float groundCheckDistance = 1.2f;
+
     public AudioSource runAudio;
     public AudioSource jumpAudio;
+    public AudioSource flyAudio;
+    public AudioSource attackAudio;
 
     public Transform forestSpawn;
     public Transform villageSpawn;
@@ -22,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     float moveInput;
     float rotateInput;
 
+    int jumpCount = 0;
+    bool isGrounded;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,52 +38,47 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Get keyboard input
-        moveInput = Input.GetAxis("Vertical");     // W / S
-        rotateInput = Input.GetAxis("Horizontal"); // A / D
+        moveInput = Input.GetAxis("Vertical");
+        rotateInput = Input.GetAxis("Horizontal");
 
-        // Send movement value to animator
         if (anim != null)
         {
             anim.SetFloat("Speed", Mathf.Abs(moveInput));
         }
 
-        // Play movement/running sound
         HandleRunSound();
+        CheckGrounded();
 
-        // Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpForce);
-
-            if (jumpAudio != null)
-            {
-                jumpAudio.Play();
-            }
+            TryJump();
         }
 
-        // Attack (UNCHANGED - still F)
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (anim != null)
             {
                 anim.SetTrigger("Attack");
-                ScoreManager.instance.reduceDragonhealth(0); 
+                ScoreManager.instance.reduceDragonhealth(0);
+            }
+
+            if (attackAudio != null && attackAudio.clip != null)
+            {
+                attackAudio.PlayOneShot(attackAudio.clip);
             }
         }
 
-        // Teleport controls
-        if (Input.GetKeyDown(KeyCode.B)) // Forest
+        if (Input.GetKeyDown(KeyCode.B))
         {
             TeleportTo(forestSpawn);
         }
 
-        if (Input.GetKeyDown(KeyCode.V)) // Village
+        if (Input.GetKeyDown(KeyCode.V))
         {
             TeleportTo(villageSpawn);
         }
 
-        if (Input.GetKeyDown(KeyCode.C)) // Cave
+        if (Input.GetKeyDown(KeyCode.C))
         {
             TeleportTo(caveSpawn);
         }
@@ -83,20 +86,62 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move forward/back
         Vector3 movement = transform.forward * moveInput * speed;
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
 
-        // Rotate left/right
         Quaternion turn = Quaternion.Euler(0f, rotateInput * rotationSpeed * Time.fixedDeltaTime, 0f);
         rb.MoveRotation(rb.rotation * turn);
+
+        if (transform.position.y >= maxHeight && rb.linearVelocity.y > 0)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        }
+    }
+
+    void TryJump()
+    {
+        if (transform.position.y >= maxHeight)
+        {
+            return;
+        }
+
+        rb.AddForce(Vector3.up * jumpForce);
+
+        if (jumpCount < 2)
+        {
+            if (jumpAudio != null)
+            {
+                jumpAudio.Play();
+            }
+        }
+        else
+        {
+            if (flyAudio != null)
+            {
+                flyAudio.Play();
+            }
+        }
+
+        jumpCount++;
+    }
+
+    void CheckGrounded()
+    {
+        bool wasGrounded = isGrounded;
+
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+
+        if (isGrounded && !wasGrounded)
+        {
+            jumpCount = 0;
+        }
     }
 
     void HandleRunSound()
     {
         bool isMoving = Mathf.Abs(moveInput) > 0.1f;
 
-        if (isMoving)
+        if (isMoving && isGrounded)
         {
             if (runAudio != null && !runAudio.isPlaying)
             {
@@ -121,5 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = destination.position;
         transform.rotation = destination.rotation;
+
+        jumpCount = 0;
     }
 }
