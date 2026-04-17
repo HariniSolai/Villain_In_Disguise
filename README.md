@@ -134,8 +134,8 @@ The following improvements were added to enhance gameplay, immersion, and user e
 * **Lose Condition System:** A lose state has been introduced where if the player’s trust level drops below a certain threshold, the game transitions to a lose screen, encouraging strategic decision-making.
 
 * **UI Improvements:** 
-  - Added a restart/lose screen system for better player feedback  
-  - Improved button visibility and interaction clarity  
+  - Added a start screen, instruction screen, and restart/lose screen system for better player feedback  
+  - Improved button visibility and interaction clarity (alongside audio clicking feedback)  
   - Enhanced readability of UI elements over the game background  
 
 * **Area-Based Sound System:** Specific sounds now trigger based on player location (e.g., cows near farms, bells near church), making the world feel more responsive and immersive.
