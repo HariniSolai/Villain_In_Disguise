@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 45;
     public float jumpForce = 700f;
 
-    public float maxHeight = 125f;
+    public float maxHeight = 95f;
     public float groundCheckDistance = 1.2f;
 
     public AudioSource runAudio;

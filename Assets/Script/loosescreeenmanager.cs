@@ -5,7 +5,7 @@ public class LoseScreenManager : MonoBehaviour
 {
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
