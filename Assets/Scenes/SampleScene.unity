@@ -95679,7 +95679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2735600020731692673, guid: 8b222146fa41a324789772470d2d6e3d, type: 3}
       propertyPath: isFloating
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2735600020731692673, guid: 8b222146fa41a324789772470d2d6e3d, type: 3}
       propertyPath: isRotating

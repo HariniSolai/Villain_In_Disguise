@@ -146,8 +146,16 @@ The following improvements were added to enhance gameplay, immersion, and user e
   - Added visual effects to key interactive objects  
 
 ---
-### Shaders
-- reflective Shader on gems in the forest 
-- reflective light Shader on bonfires infront of the cave
-- red highlighting Shader on the interactable NPC in the village
 
+### Assignment 8 Updates
+
+* ** Shaders
+- Surface Shader on gems in the forest 
+- Reflective light Shader on bonfires infront of the cave
+- Red highlighting Shader on the interactable NPC in the village
+
+* ** UI Modifications
+- Created a Credit Screen link after win/lose
+- Updated instruction in game
+- Opening scene with premeise 
+- Throught gameplay we included suggestions for the Player to follow
