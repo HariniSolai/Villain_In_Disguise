@@ -165,4 +165,5 @@ The following improvements were added to enhance gameplay, immersion, and user e
 - Made the interactable NPC be the soldiers in the village and added a Red Lighting shader so they are more clear and visible
 - Added a jump limit so players dont get stuck in the sky
 - Added additional action based sound effects for more audio feedback. Specifically Fighting sounds and flying sounds
+- Added Forcefield around the edge of our plane which stops player leaving the game environment 
 
