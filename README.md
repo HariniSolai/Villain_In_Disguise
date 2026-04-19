@@ -159,3 +159,10 @@ The following improvements were added to enhance gameplay, immersion, and user e
 - Updated instruction in game
 - Opening scene with premeise 
 - Throught gameplay we included suggestions for the Player to follow
+
+* ** Alpha Release Feedback based additions 
+- Added player fighting interaction with HP bars for the Dragon and the Player to have a more interactable fighting simulation. The player can use the "F" key alongside dark potions to do damage.
+- Made the interactable NPC be the soldiers in the village and added a Red Lighting shader so they are more clear and visible
+- Added a jump limit so players dont get stuck in the sky
+- Added additional action based sound effects for more audio feedback. Specifically Fighting sounds and flying sounds
+
