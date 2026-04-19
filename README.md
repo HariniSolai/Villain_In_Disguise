@@ -146,3 +146,8 @@ The following improvements were added to enhance gameplay, immersion, and user e
   - Added visual effects to key interactive objects  
 
 ---
+### Shaders
+- reflective Shader on gems in the forest 
+- reflective light Shader on bonfires infront of the cave
+- red highlighting Shader on the interactable NPC in the village
+
