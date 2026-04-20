@@ -8059,7 +8059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963637341440938041, guid: 8b222146fa41a324789772470d2d6e3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.07
+      value: 1.535
       objectReference: {fileID: 0}
     - target: {fileID: 8963637341440938041, guid: 8b222146fa41a324789772470d2d6e3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8636,7 +8636,6 @@ GameObject:
   - component: {fileID: 157948892}
   - component: {fileID: 157948891}
   - component: {fileID: 157948890}
-  - component: {fileID: 157948889}
   - component: {fileID: 157948888}
   m_Layer: 0
   m_Name: forceFieldsAroundPlane (2)
@@ -8657,33 +8656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d3afb5d83264048a1113d1a592704a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceFieldBlocker
---- !u!54 &157948889
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157948887}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 2
 --- !u!64 &157948890
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11195,7 +11167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265206175713501824, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -227.09999
+      value: -266.4
       objectReference: {fileID: 0}
     - target: {fileID: 6265206175713501824, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28782,7 +28754,6 @@ GameObject:
   - component: {fileID: 695965617}
   - component: {fileID: 695965616}
   - component: {fileID: 695965615}
-  - component: {fileID: 695965614}
   - component: {fileID: 695965613}
   m_Layer: 0
   m_Name: forceFieldsAroundPlane (1)
@@ -28803,33 +28774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d3afb5d83264048a1113d1a592704a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceFieldBlocker
---- !u!54 &695965614
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695965612}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 2
 --- !u!64 &695965615
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36157,7 +36101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &790526373
 Transform:
   m_ObjectHideFlags: 0
@@ -47567,6 +47511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985874005}
+  - component: {fileID: 985874006}
   m_Layer: 0
   m_Name: Village_3d_Objects
   m_TagString: Untagged
@@ -47667,6 +47612,27 @@ Transform:
   - {fileID: 2013119472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &985874006
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985874004}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &985895470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4405961680775968051, guid: a9fb09caddf3d504a859a9c5d2fa80cc, type: 3}
@@ -49635,7 +49601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963637341440938041, guid: 8b222146fa41a324789772470d2d6e3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.85
+      value: 4.27
       objectReference: {fileID: 0}
     - target: {fileID: 8963637341440938041, guid: 8b222146fa41a324789772470d2d6e3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92978,7 +92944,6 @@ GameObject:
   - component: {fileID: 1811752191}
   - component: {fileID: 1811752190}
   - component: {fileID: 1811752189}
-  - component: {fileID: 1811752188}
   - component: {fileID: 1811752187}
   m_Layer: 0
   m_Name: forceFieldsAroundPlane (3)
@@ -92999,33 +92964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d3afb5d83264048a1113d1a592704a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceFieldBlocker
---- !u!54 &1811752188
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811752186}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 2
 --- !u!64 &1811752189
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -94427,7 +94365,6 @@ GameObject:
   - component: {fileID: 1847723238}
   - component: {fileID: 1847723237}
   - component: {fileID: 1847723236}
-  - component: {fileID: 1847723235}
   - component: {fileID: 1847723234}
   m_Layer: 0
   m_Name: forceFieldsAroundPlane
@@ -94448,33 +94385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d3afb5d83264048a1113d1a592704a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForceFieldBlocker
---- !u!54 &1847723235
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847723233}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 2
 --- !u!64 &1847723236
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -123295,7 +123205,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144371684}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

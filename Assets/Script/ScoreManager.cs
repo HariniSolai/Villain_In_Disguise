@@ -106,6 +106,8 @@ public class ScoreManager : MonoBehaviour
             if (playerInCave && potions > 0)
             {
                 reduceDragonhealth(1); 
+                potions -= 1; 
+                UpdatePotionDisplay(); 
             }
         });
 
