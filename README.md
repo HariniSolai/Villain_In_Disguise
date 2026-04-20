@@ -160,10 +160,22 @@ The following improvements were added to enhance gameplay, immersion, and user e
 - Opening scene with premeise 
 - Throught gameplay we included suggestions for the Player to follow
 
-* ** Alpha Release Feedback based additions 
-- Added player fighting interaction with HP bars for the Dragon and the Player to have a more interactable fighting simulation. The player can use the "F" key alongside dark potions to do damage.
-- Made the interactable NPC be the soldiers in the village and added a Red Lighting shader so they are more clear and visible
-- Added a jump limit so players dont get stuck in the sky
-- Added additional action based sound effects for more audio feedback. Specifically Fighting sounds and flying sounds
-- Added Forcefield around the edge of our plane which stops player leaving the game environment 
+* ** Feedback Testers Provided: 
+- Since the Dark spells option just lowered the players trust and had no other use they wondered what was the usage of creating Potions
+- They wondered why they heard the running noise while also flying 
+- The instructions of where they were supposed to be were unclear since we had a big game board to explore (cave, forest, village)
+- When in the village the testers didn't know which NPC’s were interactable and which weren't
+- When they unlocked level 3 they tried to fight the Dragon but noticed the animation played out regardless of the player actions. So the dragon always died as long as the player pressed the F key to fight once. The testers wanted more fighting interaction and suggested a HP bar to show that progression.
+- In the Village the player went through the houses and fell through the plane resulting in them having to use teleportation keys to get back on the plane. 
 
+* ** Alpha Release Feedback based additions 
+- The testers were able to walk off the plane and fell off our playing environment. To fix this issue we added a clear forcefield around the edge of our plane which stops the player from leaving the game environment 
+- We changed the value of each gem from 10 to 1 so players had to forage more through the forest and explore the environment
+- We included three Shaders in our game, The first being a Red lighting Shader on the interactable NPC in the village so it stands out more. The second Shader being a surface Shader on the collectible gems in the forest so they are more prominent against the forest assets. The third Shader is a reflective Shader on the fire pits in front of the cave to create more ambiance to the dragon
+- We completely upgraded the Dragon interaction. The player can cause damage by fighting the dragon (with the F button) or using dark spells to cause damage. The dragon also continuously causes damage to the player, so the player has to respond and fight the dragon to win. There are health bars for visuals on the dragon and player’s health, for better player UI. This animated dragon fight allows for more interaction with the player now. This leads to a better game climax and a more fun experience for the player since they interact with the dragon.
+- Dark spells can be used in the dragon fight and you need potions to make dark spells (in preparation for the fight). Potions can be made using gems. Previously there was no clear use for the potions, but now there is a very clear way the player can use the potions in the game. Players can not make dark potions without potions. 
+- The talk to NPC button activates only when the player is close to the NPC so they know which NPC is interactable. This also makes the gameplay more realistic as the player shouldn’t be able to interact with an NPC they are not close to. 
+- In order to make steps more clear for the player, we added instructions which are on the players screen and follow their gameplay prompting them with more guidance as they continue through the game
+- We updated the instruction scene by providing more detailed information on how to use and maneuver our character.
+- We also added a flying limit to the player so it doesn’t feel like they can escape the map. Additionally, we added background sound for flying. Whenever the player jumps more than twice, they enter flying mode, and a flying sound plays, creating a smoother and more enjoyable experience.
+- We also added background sound for sword attacks, so whenever the player presses “F” to attack, a sword slashing sound will play. This makes the game more interactive, fun, and enjoyable.
