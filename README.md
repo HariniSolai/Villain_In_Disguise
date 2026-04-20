@@ -123,8 +123,12 @@ The following improvements were added to enhance gameplay, immersion, and user e
 
 * **NPC Wandering System:** NPC characters now actively move around the village using Unity NavMesh. They walk for longer distances and switch between walking and idle states, making the environment feel more alive and dynamic instead of static.
 
-* **Improved Village Interactivity:** The village environment has been expanded with additional houses, shops, and layout improvements to eliminate empty space and create a more realistic and engaging world for the player to explore.
+* **Improved Village Interactivity:** The village environment has been expanded with additional houses, shops, and layout improvements to eliminate empty space and create a more realistic and engaging world for the player to explore. Added NPC's walking around the village as mentioned above. Additionally with our interactable NPC we have added interaction questions with buttons for the player to choose a response. 
 
+* **Dragon + Cave:** We created a path from the forest with directional billboards that guide the player into the cave where the dragon is. When the player gains enough trust from the villagers the force field infront of the cave goes away. Which allows the player to enter the cave and fight the dragon with the F key. When they win the screen changes to our win screen. 
+
+* **Mecanim:** Main player animations fighting when "F" button is pressed. Idle annimation when not moving or walking slowly, this animation transitions to running animation when players speed picks up. 
+  
 * **Teleportation System:** Players can instantly move between major locations using keyboard shortcuts:
   - **B** → Forest  
   - **V** → Village  
@@ -136,7 +140,8 @@ The following improvements were added to enhance gameplay, immersion, and user e
 * **UI Improvements:** 
   - Added a start screen, instruction screen, and restart/lose screen system for better player feedback  
   - Improved button visibility and interaction clarity (alongside audio clicking feedback)  
-  - Enhanced readability of UI elements over the game background  
+  - Enhanced readability of UI elements over the game background
+  - Utilized glowing orbs for the gems in the forest so they are more visible to the player along the path  
 
 * **Area-Based Sound System:** Specific sounds now trigger based on player location (e.g., cows near farms, bells near church), making the world feel more responsive and immersive.
 
