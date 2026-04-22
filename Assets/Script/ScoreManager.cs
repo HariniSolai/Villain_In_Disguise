@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI gemText;
     public TextMeshProUGUI potionText;
     public TextMeshProUGUI trustText;
+    public TextMeshProUGUI darkInstructText;
     [SerializeField] private Button PotionBtn;
     [SerializeField] private Button DarkSpell;
     [SerializeField] private Button SpeakToNpc;
@@ -38,6 +39,7 @@ public class ScoreManager : MonoBehaviour
     public bool NPCInteracted = false; 
     public bool playerInCave = false; 
     public bool dragonDefeated = false; 
+    public bool dragonFightStarted = false; 
 
     private int gems = 0;
     private int potions = 0;
@@ -55,6 +57,13 @@ public class ScoreManager : MonoBehaviour
 
         if(SpeakToNpc != null)
             SpeakToNpc.gameObject.SetActive(false);
+            
+        if(PotionBtn != null)
+            PotionBtn.gameObject.SetActive(false);
+        if(potionText != null)
+            potionText.gameObject.SetActive(false); 
+        if(darkInstructText != null)
+            darkInstructText.gameObject.SetActive(false); 
 
         // Initially hide Q1Good
         if (Q1Good != null)
@@ -96,18 +105,15 @@ public class ScoreManager : MonoBehaviour
 
         DarkSpell.onClick.AddListener(() =>
         {
-            if(!playerInCave && potions > 0)
+            if(potions > 0)
             {
-                potions -= 1; 
+                potions -= 1;
+                if (!playerInCave) {   
+                    trustUpdate(-3);
+                }
                 UpdatePotionDisplay(); 
-                trustUpdate(-5);
                 BayesianNetwork.instance.UsedDarkSpell();
-            }
-            if (playerInCave && potions > 0)
-            {
                 reduceDragonhealth(1); 
-                potions -= 1; 
-                UpdatePotionDisplay(); 
             }
         });
 
@@ -155,19 +161,27 @@ public class ScoreManager : MonoBehaviour
             
             //play the enemy sound
             AudioSource.PlayClipAtPoint(enemySound, Camera.main.transform.position);
-            Debug.Log("Q2: calling Fight function"); 
+            Debug.Log("Q2: calling Fight function");
             //removing the player talk to NPC button
             if (Q2Fight != null)
                 Q2Fight.gameObject.SetActive(false);
             if (Q2NoFight != null)
                 Q2NoFight.gameObject.SetActive(false);
             if (question2 != null)
-                question2.gameObject.SetActive(false); 
+                question2.gameObject.SetActive(false);
+
+            potionText.gameObject.SetActive(true); 
+            PotionBtn.gameObject.SetActive(true); 
+            darkInstructText.gameObject.SetActive(true); 
         });
 
         Q2NoFight.onClick.AddListener(() => {
             NPCInteractionFSM.instance.AnswerNoFight(); 
             Debug.Log("Q2: calling No Fight function"); 
+
+            potionText.gameObject.SetActive(true); 
+            PotionBtn.gameObject.SetActive(true);
+            darkInstructText.gameObject.SetActive(true);
 
             if (Q2Fight != null)
                 Q2Fight.gameObject.SetActive(false);
@@ -204,7 +218,7 @@ public class ScoreManager : MonoBehaviour
         playerHP.maxValue = 100;
         playerHP.value = PlayerHealth;
         dragonHP.maxValue = 100;
-        dragonHP.value = PlayerHealth;
+        dragonHP.value = DragonHealth;
 
         UpdateGemDisplay();
         UpdatePotionDisplay();
@@ -264,8 +278,9 @@ public class ScoreManager : MonoBehaviour
         dragonHP.gameObject.SetActive(true); 
         playerHP.gameObject.SetActive(true); 
 
-        //set player in cave
+        //set player in cave & dragon fight started
         playerInCave = true; 
+        dragonFightStarted = true; 
     }
 
     public void reducePlayerHealth()
@@ -289,38 +304,42 @@ public class ScoreManager : MonoBehaviour
         //type of attack:
         //Dark Spell --> 1  (10-13 hp damage)
         //Sword --> 0 (5-10 hp damage)
-
-        int damage; 
-        if(t == 0){
-            damage = UnityEngine.Random.Range(5, 10); 
-        } else {
-            damage = UnityEngine.Random.Range(10, 13); 
-        }
+        if (dragonFightStarted){
+            int damage; 
+            if(t == 0){
+                damage = UnityEngine.Random.Range(5, 10); 
+            } else {
+                damage = UnityEngine.Random.Range(10, 13); 
+            }
         
-        DragonHealth -= damage;
-        DragonHealth = Mathf.Clamp(DragonHealth, 0, maxHealth);
-        dragonHP.value = DragonHealth;
+            DragonHealth -= damage;
+            
+            DragonHealth = Mathf.Clamp(DragonHealth, 0, maxHealth);
+            dragonHP.value = DragonHealth;
 
-        //reducePlayerHealth(); 
+            //reducePlayerHealth(); 
 
-         //if the dragons's health is 0, the player wins
-        if(DragonHealth <= 10)
-        {
-            //loading win screen
-            // dragon dead anim 
-            DarkSpell.gameObject.SetActive(false); 
-            dragonDefeated = true; 
-            dragonHP.value = 0;
+            //if the dragons's health is 0, the player wins
+            if(DragonHealth <= 10)
+            {
+                //loading win screen
+                // dragon dead anim 
+                DarkSpell.gameObject.SetActive(false); 
+                dragonDefeated = true; 
+                dragonHP.value = 0;
 
-            AudioSource.PlayClipAtPoint(dragonSound, Camera.main.transform.position, 2f);
-            //dragon.ResetTrigger("Defend");
-            dragon.SetTrigger("Fight");
-            //wait 10 seconds and play the dragon death
-            StartCoroutine(LoadSceneAfterDelay());
-        }
+                AudioSource.PlayClipAtPoint(dragonSound, Camera.main.transform.position, 2f);
 
-        if(!dragonDefeated){
-            dragon.SetTrigger("Defend");
+                dragon.SetTrigger("Fight");
+                dragonFightStarted = false; 
+                //wait 10 seconds and play the dragon death
+                StartCoroutine(LoadSceneAfterDelay());
+            }
+
+            if(!dragonDefeated){
+                dragon.SetTrigger("Defend");
+            }
+           
         }
     }
 
