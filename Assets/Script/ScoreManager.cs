@@ -22,15 +22,19 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Button Q2NoFight;
     [SerializeField] private GameObject Forcefield;
     [SerializeField] public Slider dragonHP;
+    [SerializeField] public Slider turtleHP;
     [SerializeField] public Slider playerHP;
     
     [SerializeField] private Animator dragon; // assign in Inspector
+    [SerializeField] private Animator turtle; 
     public AudioClip dragonSound;
-
     public TextMeshProUGUI question1;
     public TextMeshProUGUI question2;
     public TextMeshProUGUI gemHint;
     public TextMeshProUGUI soldierHint;
+    public TextMeshProUGUI turtleHint;
+    public TextMeshProUGUI turtleWonT;
+
     public TextMeshProUGUI finalHint;
     public TextMeshProUGUI fightHint; 
     private bool failedtrust; 
@@ -40,12 +44,15 @@ public class ScoreManager : MonoBehaviour
     public bool playerInCave = false; 
     public bool dragonDefeated = false; 
     public bool dragonFightStarted = false; 
+    public bool turtleFightStarted = false; 
+    public bool turtleDefeated = false; 
 
     private int gems = 0;
     private int potions = 0;
     private int NPCTrust = 50;
     private int PlayerHealth = 100;
     private int DragonHealth = 100;
+    private int turtleHealth = 100;
     private int maxHealth = 100; 
     public AudioClip NPCHeyWhatAreYouDoingSound;
     public AudioClip NPCHeyWhatWasThatSound;
@@ -65,6 +72,13 @@ public class ScoreManager : MonoBehaviour
         if(darkInstructText != null)
             darkInstructText.gameObject.SetActive(false); 
 
+        if(turtleHP != null)
+            turtleHP.gameObject.SetActive(false);
+        if(turtleHint != null)
+            turtleHint.gameObject.SetActive(false);
+
+        if(turtleWonT != null)
+            turtleWonT.gameObject.SetActive(false); 
         // Initially hide Q1Good
         if (Q1Good != null)
             Q1Good.gameObject.SetActive(false);
@@ -89,6 +103,7 @@ public class ScoreManager : MonoBehaviour
             playerHP.gameObject.SetActive(false); 
         }
         if (earnedTrust){
+            if (turtleDefeated)
             finalHint.gameObject.SetActive(true); 
             soldierHint.gameObject.SetActive(false); 
             gemHint.gameObject.SetActive(false); 
@@ -154,14 +169,21 @@ public class ScoreManager : MonoBehaviour
         });
 
         Q2Fight.onClick.AddListener(() => {
-            NPCInteractionFSM.instance.AnswerFight(); 
-
             //play the NPC's reaction to the enemy 
             AudioSource.PlayClipAtPoint(NPCHeyWhatWasThatSound, Camera.main.transform.position);
+
+            turtleFightStarted = true; 
             
             //play the enemy sound
             AudioSource.PlayClipAtPoint(enemySound, Camera.main.transform.position);
             Debug.Log("Q2: calling Fight function");
+            turtleHint.gameObject.SetActive(true); 
+            turtleHP.gameObject.SetActive(true);
+
+            playerHP.gameObject.SetActive(true); 
+
+            callCoroutinetoDamagePlayer(); 
+            
             //removing the player talk to NPC button
             if (Q2Fight != null)
                 Q2Fight.gameObject.SetActive(false);
@@ -170,9 +192,6 @@ public class ScoreManager : MonoBehaviour
             if (question2 != null)
                 question2.gameObject.SetActive(false);
 
-            potionText.gameObject.SetActive(true); 
-            PotionBtn.gameObject.SetActive(true); 
-            darkInstructText.gameObject.SetActive(true); 
         });
 
         Q2NoFight.onClick.AddListener(() => {
@@ -219,6 +238,8 @@ public class ScoreManager : MonoBehaviour
         playerHP.value = PlayerHealth;
         dragonHP.maxValue = 100;
         dragonHP.value = DragonHealth;
+        turtleHP.maxValue = 100;
+        turtleHP.value = turtleHealth;
 
         UpdateGemDisplay();
         UpdatePotionDisplay();
@@ -342,11 +363,83 @@ public class ScoreManager : MonoBehaviour
            
         }
     }
+    public void reduceTurtlehealth()
+    {
+        if (turtleFightStarted){
+            int damage = UnityEngine.Random.Range(5, 10); 
+            
+            turtleHealth -= damage;
+            
+            turtleHealth = Mathf.Clamp(turtleHealth, 0, maxHealth);
+            turtleHP.value = turtleHealth;
+
+            //reducePlayerHealth(); 
+
+            //if the dragons's health is 0, the player wins
+            if(turtleHealth <= 10)
+            {
+                //loading win text and reset player's health
+                turtleHint.gameObject.SetActive(false); 
+                turtleWonT.gameObject.SetActive(true);
+                PlayerHealth = 100;
+                playerHP.value = PlayerHealth; 
+                
+                //send off data that the player engaged and won the fight
+                NPCInteractionFSM.instance.AnswerFight(); 
+
+                // turtle dead anim
+                turtleDefeated = true; 
+                turtleHP.value = 0;
+
+                AudioSource.PlayClipAtPoint(enemySound, Camera.main.transform.position, 2f);
+
+                turtle.SetTrigger("Death");
+                turtleFightStarted = false; 
+
+                //display string that YOU WON 
+
+                //Wait 5 seconds then change to cave instructions
+                
+                StartCoroutine(nextSteps());
+            }
+
+            if(!turtleDefeated){
+                turtle.SetTrigger("tDef");
+                Debug.Log("turtledefend"); 
+            }
+           
+        }
+    }
 
     private IEnumerator LoadSceneAfterDelay()
     {
         yield return new WaitForSeconds(10f);
         SceneManager.LoadScene(4);
+    }
+
+    private IEnumerator nextSteps()
+    {
+        yield return new WaitForSeconds(5f);
+        turtleWonT.gameObject.SetActive(false);
+        turtleHint.gameObject.SetActive(false); 
+        turtleHP.gameObject.SetActive(false); 
+        finalHint.gameObject.SetActive(true); 
+        potionText.gameObject.SetActive(true); 
+        PotionBtn.gameObject.SetActive(true); 
+        darkInstructText.gameObject.SetActive(true); 
+
+    }
+
+    private void callCoroutinetoDamagePlayer()
+    {
+        StartCoroutine(damagePlayerByTurtle());
+    }
+    private IEnumerator damagePlayerByTurtle()
+    {
+        yield return new WaitForSeconds(4f);
+        ScoreManager.instance.reducePlayerHealth(); 
+        if(!turtleDefeated)
+            callCoroutinetoDamagePlayer(); 
     }
 
     public void potionUpdate(int num)

@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 anim.SetTrigger("Attack");
                 ScoreManager.instance.reduceDragonhealth(0);
+                ScoreManager.instance.reduceTurtlehealth();
             }
 
             if (attackAudio != null && attackAudio.clip != null)
