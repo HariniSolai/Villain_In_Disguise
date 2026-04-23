@@ -64,6 +64,8 @@ public class ScoreManager : MonoBehaviour
 
         if(SpeakToNpc != null)
             SpeakToNpc.gameObject.SetActive(false);
+        if(DarkSpell != null)
+            DarkSpell.gameObject.SetActive(false);
             
         if(PotionBtn != null)
             PotionBtn.gameObject.SetActive(false);
@@ -426,6 +428,7 @@ public class ScoreManager : MonoBehaviour
         finalHint.gameObject.SetActive(true); 
         potionText.gameObject.SetActive(true); 
         PotionBtn.gameObject.SetActive(true); 
+        DarkSpell.gameObject.SetActive(true); 
         darkInstructText.gameObject.SetActive(true); 
 
     }
