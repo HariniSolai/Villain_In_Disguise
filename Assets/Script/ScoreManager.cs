@@ -321,6 +321,32 @@ public class ScoreManager : MonoBehaviour
         }
         
     }
+    public bool healthReset = false; 
+    public void reducePlayerHealthTurtle()
+    {
+        if(!turtleDefeated){
+            //general turtle attack will be from 5-10 hp of damage 
+            Debug.Log("damage by turtle"); 
+            int damage = UnityEngine.Random.Range(5, 10);
+            PlayerHealth -= damage;
+            PlayerHealth = Mathf.Clamp(PlayerHealth, 0, maxHealth);
+            playerHP.value = PlayerHealth;
+
+            //if the player's health is 0, they die
+            if(PlayerHealth <= 5){
+                SceneManager.LoadScene(5); 
+            }
+        } else {
+            if(!healthReset){
+                PlayerHealth = 100;
+                Debug.Log("fight won, health reset"); 
+                PlayerHealth = Mathf.Clamp(PlayerHealth, 0, maxHealth);
+                playerHP.value = PlayerHealth;
+                healthReset = true; 
+            }
+        }
+        
+    }
     public void reduceDragonhealth(int t)
     {
         //type of attack:
@@ -376,28 +402,31 @@ public class ScoreManager : MonoBehaviour
             if(turtleHealth <= 10)
             {
                 //loading win text and reset player's health
-                turtleHint.gameObject.SetActive(false); 
-                turtleWonT.gameObject.SetActive(true);
-                PlayerHealth = 100;
-                playerHP.value = PlayerHealth; 
-                
-                //send off data that the player engaged and won the fight
-                NPCInteractionFSM.instance.AnswerFight(); 
-
-                // turtle dead anim
                 turtleDefeated = true; 
                 turtleHP.value = 0;
 
+                Debug.Log("TRUTLE DEFEATED"); 
+
+                turtleHint.gameObject.SetActive(false); 
+                turtleWonT.gameObject.SetActive(true);
+                
+                Debug.Log("instructions changed"); 
+                //send off data that the player engaged and won the fight
+                NPCInteractionFSM.instance.AnswerFight(); 
+                Debug.Log("FSM called"); 
+
+                // turtle dead anim
+
                 AudioSource.PlayClipAtPoint(enemySound, Camera.main.transform.position, 2f);
+                Debug.Log("enemy called"); 
 
                 turtle.SetTrigger("Death");
                 turtleFightStarted = false; 
-
-                //display string that YOU WON 
+                Debug.Log("enemy dead"); 
 
                 //Wait 5 seconds then change to cave instructions
-                //StopCoroutine(damagePlayerByTurtle); 
                 StartCoroutine(nextSteps());
+                Debug.Log("instructions Call"); 
             } else {
                 turtle.SetTrigger("Def");
                 Debug.Log("turtledefend"); 
@@ -435,10 +464,8 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator damagePlayerByTurtle()
     {
         yield return new WaitForSeconds(4f);
-        ScoreManager.instance.reducePlayerHealth(); 
-        if(!turtleDefeated){
-            callCoroutinetoDamagePlayer(); 
-        }
+        ScoreManager.instance.reducePlayerHealthTurtle(); 
+        callCoroutinetoDamagePlayer(); 
     }
 
     public void potionUpdate(int num)

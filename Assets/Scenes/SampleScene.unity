@@ -37703,7 +37703,6 @@ MonoBehaviour:
   q1UI: {fileID: 804691340}
   q2UI: {fileID: 2111656432}
   currentState: 0
-  animFight: {fileID: 0}
   enemySound: {fileID: 0}
 --- !u!222 &770571429
 CanvasRenderer:
@@ -39496,7 +39495,7 @@ MonoBehaviour:
   turtleHP: {fileID: 737044617}
   playerHP: {fileID: 121086770}
   dragon: {fileID: 1831073776}
-  turtle: {fileID: 0}
+  turtle: {fileID: 1277028916}
   dragonSound: {fileID: 8300000, guid: c05b078acd7917d4d8e6d27b8a7be4ab, type: 3}
   question1: {fileID: 1358839623}
   question2: {fileID: 1463372012}
@@ -39515,6 +39514,7 @@ MonoBehaviour:
   NPCHeyWhatAreYouDoingSound: {fileID: 8300000, guid: 18d75c2cb29e8408aa8f6640c704b1d4, type: 3}
   NPCHeyWhatWasThatSound: {fileID: 8300000, guid: 9b19228f25cc448b681a4ff5e5e6e4a6, type: 3}
   enemySound: {fileID: 8300000, guid: 7592d3abb53e14da8b29227d4b2011e3, type: 3}
+  healthReset: 0
 --- !u!4 &820371581
 Transform:
   m_ObjectHideFlags: 0
@@ -104198,7 +104198,6 @@ MonoBehaviour:
   q1UI: {fileID: 804691340}
   q2UI: {fileID: 2111656432}
   currentState: 0
-  animFight: {fileID: 0}
   enemySound: {fileID: 8300000, guid: fbb2d30773dc54d4c923efab121c32e9, type: 3}
 --- !u!1001 &1964784484
 PrefabInstance:

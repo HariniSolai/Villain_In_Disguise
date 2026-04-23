@@ -21,7 +21,7 @@ public class NPCInteractionFSM : MonoBehaviour
     {
         instance = this;
     }
-    [SerializeField] private Animator animFight; 
+    //[SerializeField] private Animator animFight; 
     public AudioClip enemySound;
 
     void Idle()
@@ -73,7 +73,7 @@ public class NPCInteractionFSM : MonoBehaviour
         Debug.Log("fight sound played"); 
         AudioSource.PlayClipAtPoint(enemySound, transform.position);
 
-        animFight.SetTrigger("FightPlayer"); 
+        //animFight.SetTrigger("FightPlayer"); 
         BayesianNetwork.instance.playerKilledEnemy = true; 
         BayesianNetwork.instance.playerLeftEnemyAlive = false; 
         BayesianNetwork.instance.StartEnemyTrustTimer();

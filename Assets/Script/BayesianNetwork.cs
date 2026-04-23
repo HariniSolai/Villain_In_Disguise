@@ -16,7 +16,7 @@ public class BayesianNetwork : MonoBehaviour
 
     [Header("Enemy Settings")]
     public GameObject enemy; // assign the enemy from the scene
-    public float trustPenaltyDelay = 10f; // seconds before reducing trust if enemy alive
+    public float trustPenaltyDelay = 1f; // seconds before reducing trust if enemy alive
     public float NPCTrust = 10f; // seconds before reducing trust if enemy alive
 
     void Awake()
