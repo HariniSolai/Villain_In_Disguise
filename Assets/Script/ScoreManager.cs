@@ -105,7 +105,6 @@ public class ScoreManager : MonoBehaviour
             playerHP.gameObject.SetActive(false); 
         }
         if (earnedTrust){
-            if (turtleDefeated)
             finalHint.gameObject.SetActive(true); 
             soldierHint.gameObject.SetActive(false); 
             gemHint.gameObject.SetActive(false); 
@@ -369,15 +368,11 @@ public class ScoreManager : MonoBehaviour
     {
         if (turtleFightStarted){
             int damage = UnityEngine.Random.Range(5, 10); 
-            
             turtleHealth -= damage;
-            
             turtleHealth = Mathf.Clamp(turtleHealth, 0, maxHealth);
             turtleHP.value = turtleHealth;
 
-            //reducePlayerHealth(); 
-
-            //if the dragons's health is 0, the player wins
+            //if the turtle's health is 0, the player wins
             if(turtleHealth <= 10)
             {
                 //loading win text and reset player's health
@@ -401,14 +396,14 @@ public class ScoreManager : MonoBehaviour
                 //display string that YOU WON 
 
                 //Wait 5 seconds then change to cave instructions
-                
+                //StopCoroutine(damagePlayerByTurtle); 
                 StartCoroutine(nextSteps());
-            }
-
-            if(!turtleDefeated){
-                turtle.SetTrigger("tDef");
+            } else {
+                turtle.SetTrigger("Def");
                 Debug.Log("turtledefend"); 
             }
+
+            
            
         }
     }
@@ -441,8 +436,9 @@ public class ScoreManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         ScoreManager.instance.reducePlayerHealth(); 
-        if(!turtleDefeated)
+        if(!turtleDefeated){
             callCoroutinetoDamagePlayer(); 
+        }
     }
 
     public void potionUpdate(int num)

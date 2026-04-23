@@ -7,7 +7,7 @@ public class GemCollect : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ScoreManager.instance.gemUpdate(1);
+            ScoreManager.instance.gemUpdate(10);
 
             // Play sound at the item's current position
             AudioSource.PlayClipAtPoint(pickupSound, transform.position);
