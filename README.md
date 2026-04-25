@@ -14,6 +14,10 @@ Key Features of this game include:
 - Kahnishga Solaidurairaj
 - Omar Khan
 
+# Try it out!
+- https://kahnishga.itch.io/villian-in-disguise
+- https://play.unity.com/en/games/fc8f2ccc-01c2-4664-b601-2c606e3c9115/villian-in-disguise
+
 ## Technical Implementation
 
 ### 3D Physics
